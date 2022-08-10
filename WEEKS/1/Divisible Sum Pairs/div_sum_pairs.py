@@ -25,19 +25,15 @@ def divisibleSumPairs(n:int, k:int, ar:list):
     if type(n) != int or type(k) != int:
         raise TypeError("n & k must been integers!")
     
-    combinations = []
+    count = 0
     print(ar)
     for i in ar:
         if i not in range(1, 101):
             raise TypeError("ar[i] out of range!")
-        for m in ar:
-            if i < m:
-                r = i+m
-                print(f"{r} % {k} = {r%k}")
-                if r%k == 0:
-                    combinations.append([i, m])
-    print(len(combinations))
-    return len(combinations)
+        for j in range(ar.index(i)+1, len(ar)):
+            if i < ar[j]:
+                count += (i+ar[j])%k == 0
+    return count
 if __name__ == '__main__':
     #fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
